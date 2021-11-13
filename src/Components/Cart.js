@@ -33,9 +33,31 @@ const Cart = () => {
     setCartProducts([...cartProducts]);
   }
 
+  const removeFromCart = (id) => {
+    try {
+      let cartProductsStr = localStorage.getItem("cartProducts");
+      if(cartProductsStr) {
+        let tempCartProducts = JSON.parse(cartProductsStr);
+        tempCartProducts = tempCartProducts.filter(productId => (productId!==id));
+        localStorage.setItem("cartProducts", JSON.stringify(tempCartProducts));
+      }
+
+      let tempCartProducts = cartProducts;
+      if(!tempCartProducts) {
+        tempCartProducts = [];
+      }
+      tempCartProducts = tempCartProducts.filter(product => (product.id!==id));
+      setCartProducts(tempCartProducts);
+      }
+    catch(e) {
+      console.log(e);
+    }
+    console.log(localStorage.getItem("cartProducts"));
+  }
+
   return ( 
     <div className="container px-4 px-lg-5 my-5">
-      {/* {console.log(cartProducts)} */}
+      {console.log(cartProducts)}
       <header>
         <h1 className="display-4 fw-bolder text-primary text-center">My Cart</h1>
       </header>
@@ -56,7 +78,7 @@ const Cart = () => {
                         <span className="input-group-text bg-white">Quantity</span>
                         <input type="number" className="form-control" min="1" value={product.quantity} onChange={(e) => setQuantity(product.id, e.target.value)}/>
                       </div>
-                      <button className="btn btn-danger mt-2 mt-md-2 mt-lg-3 w-100"><i className="bi bi-cart-x-fill mx-2"></i>Remove From Cart</button>
+                      <button className="btn btn-danger mt-2 mt-md-2 mt-lg-3 w-100" onClick={() => removeFromCart(product.id)}><i className="bi bi-cart-x-fill mx-2"></i>Remove From Cart</button>
                     </div>
                   </div>
                 </div>

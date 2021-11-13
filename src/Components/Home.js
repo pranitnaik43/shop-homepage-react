@@ -25,12 +25,14 @@ const Home = () => {
     if(!tempCartProducts) {
       tempCartProducts = [];
     }
-    console.log(tempCartProducts);
+    // console.log(tempCartProducts);
     tempCartProducts.push(id);
-    setCartProducts(tempCartProducts);
     //save to local storage
     localStorage.setItem("cartProducts", JSON.stringify(tempCartProducts));
     console.log(tempCartProducts);
+
+    //set state
+    setCartProducts(tempCartProducts);
   }
 
   const isAddedToCart = (id) => {
