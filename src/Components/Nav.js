@@ -1,17 +1,9 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Nav = () => {
-  let cartProductsStr = localStorage.getItem("cartProducts");
-  let cartProductsCount = 0;
-  try {
-    if(cartProductsStr) {
-      let cartProducts = JSON.parse(cartProductsStr);
-      cartProductsCount = cartProducts.length;
-    }
-  }
-  catch(e) {
-    console.log(e);
-  }
+  // mapStateToProps
+  const cartFromStore = useSelector((state) => state);
   
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -35,7 +27,7 @@ const Nav = () => {
           <Link className="btn btn-outline-dark" to="/cart">
             <i className="bi-cart-fill me-1"></i>
             Cart
-            <span className="badge bg-dark text-white ms-1 rounded-pill">{cartProductsCount}</span>
+            <span className="badge bg-dark text-white ms-1 rounded-pill">{(cartFromStore && cartFromStore.length)?(cartFromStore.length):(0)}</span>
           </Link>
         </div>
       </div>

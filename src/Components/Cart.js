@@ -1,27 +1,33 @@
 import { useState, useEffect } from 'react';
 import products from '../Data/products.json';
 
+import { useSelector, useDispatch } from "react-redux";
+import { REMOVE } from '../reducers/cartReducer';
+
 const Cart = () => {
 
   const [cartProducts, setCartProducts] = useState([]);
 
+  // mapStateToProps
+  const cartFromStore = useSelector((state) => state);
+  console.log(cartFromStore)
+
+  // mapDispatchToProps
+  const dispatch = useDispatch();
+  const removeFromCartStore = (id) => dispatch({ type: REMOVE, id });
+
   useEffect(() => {
-    let cartProductsStr = localStorage.getItem("cartProducts");
-    try {
-      if(cartProductsStr) {
-        let tempCartProducts = JSON.parse(cartProductsStr);
-        for(let i=0; i<tempCartProducts.length; i++) {
-          let id = tempCartProducts[i];
-          let product = products.find(product => (product.id===id));
-          product.quantity = 1;
-          tempCartProducts[i] = product;       
-        }
-        setCartProducts(tempCartProducts);
-      }
+    //Only product ids are stored in Cart store. Add product details to cart
+    let tempCartProducts = [...cartFromStore];
+    for(let i=0; i<tempCartProducts.length; i++) {
+      let id = tempCartProducts[i];
+      let product = products.find(product => (product.id===id));
+      product.quantity = 1;
+      tempCartProducts[i] = product;       
     }
-    catch(e) {
-      console.log(e);
-    }
+    setCartProducts(tempCartProducts);
+      
+    // eslint-disable-next-line
   }, []);
 
   const setQuantity = (id, quantity) => {
@@ -35,13 +41,9 @@ const Cart = () => {
 
   const removeFromCart = (id) => {
     try {
-      let cartProductsStr = localStorage.getItem("cartProducts");
-      if(cartProductsStr) {
-        let tempCartProducts = JSON.parse(cartProductsStr);
-        tempCartProducts = tempCartProducts.filter(productId => (productId!==id));
-        localStorage.setItem("cartProducts", JSON.stringify(tempCartProducts));
-      }
+      removeFromCartStore(id);
 
+      //change state
       let tempCartProducts = cartProducts;
       if(!tempCartProducts) {
         tempCartProducts = [];
@@ -52,7 +54,6 @@ const Cart = () => {
     catch(e) {
       console.log(e);
     }
-    console.log(localStorage.getItem("cartProducts"));
   }
 
   return ( 

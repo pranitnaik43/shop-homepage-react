@@ -1,42 +1,25 @@
-import { useState, useEffect } from 'react';
 import ProductCard from './ProductCard';
 import products from '../Data/products.json';
 
-const Home = () => {
-  const [cartProducts, setCartProducts] = useState([]);
+import { useSelector, useDispatch } from "react-redux";
+import { ADD } from '../reducers/cartReducer';
 
-  useEffect(() => {
-    try {
-      //get cart products from local storage
-      let tempCartProductsString = localStorage.getItem("cartProducts");
-      let tempCartProducts = [];
-      if(tempCartProductsString) {
-        tempCartProducts = JSON.parse(tempCartProductsString);
-      }
-      setCartProducts(tempCartProducts);
-    }
-    catch(e) {
-      console.log(e);
-    }
-  }, [])
+const Home = () => {
+  // mapStateToProps
+  const cartFromStore = useSelector((state) => state);
+  // console.log(cartFromStore)
+  // localStorage.setItem("cartProducts", []);
+
+  // mapDispatchToProps
+  const dispatch = useDispatch();
+  const addToCartSore = (id) => dispatch({ type: ADD, id });
 
   const addToMyCart = (id) => {
-    let tempCartProducts = cartProducts;
-    if(!tempCartProducts) {
-      tempCartProducts = [];
-    }
-    // console.log(tempCartProducts);
-    tempCartProducts.push(id);
-    //save to local storage
-    localStorage.setItem("cartProducts", JSON.stringify(tempCartProducts));
-    console.log(tempCartProducts);
-
-    //set state
-    setCartProducts(tempCartProducts);
+    addToCartSore(id);
   }
 
   const isAddedToCart = (id) => {
-    if(cartProducts && cartProducts.includes(id)) {
+    if(cartFromStore && cartFromStore.includes(id)) {
       return true;
     }
     return false;
