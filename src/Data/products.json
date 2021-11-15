@@ -2,14 +2,14 @@
   {
     "id": 1,
     "name": "Product_abc",
-    "price": 250,
+    "pricePerUnit": 250,
     "rating": 3,
     "img": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
   },
   {
     "id": 2,
     "name": "Product_xyz",
-    "price": 300,
+    "pricePerUnit": 300,
     "rating": 4,
     "sale": true,
     "img": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
@@ -17,14 +17,14 @@
   {
     "id": 3,
     "name": "Product_lmn",
-    "price": 50,
+    "pricePerUnit": 50,
     "rating": 5,
     "img": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
   },
   {
     "id": 4,
     "name": "Product_pqr",
-    "price": 350,
+    "pricePerUnit": 350,
     "rating": 3,
     "sale": true,
     "img": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
@@ -32,14 +32,14 @@
   {
     "id": 5,
     "name": "Product_uvw",
-    "price": 200,
+    "pricePerUnit": 200,
     "rating": 3,
     "img": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
   },
   {
     "id": 6,
     "name": "Product_mno",
-    "price": 100,
+    "pricePerUnit": 100,
     "rating": 2,
     "sale": true,
     "img": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
@@ -47,7 +47,7 @@
   {
     "id": 7,
     "name": "Product_jkl",
-    "price": 150,
+    "pricePerUnit": 150,
     "rating": 3,
     "sale": true,
     "img": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
@@ -55,7 +55,7 @@
   {
     "id": 8,
     "name": "Product_def",
-    "price": 120,
+    "pricePerUnit": 120,
     "rating": 4,
     "img": "https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
   }

@@ -1,5 +1,14 @@
 const ProductCard = ({ product, addToMyCart, isAddedToCart }) => {
   const MAX_RATING = 5;
+
+  const getCurrenyINRformat = (val) => {
+    val = parseFloat(val);
+    return val.toLocaleString("en-IN", {
+      style: 'currency',
+      currency: 'INR',
+    })
+  }
+
   return (
     <>
     {/* {console.log(product)} */}
@@ -40,7 +49,7 @@ const ProductCard = ({ product, addToMyCart, isAddedToCart }) => {
                 }
             </div>
               {/* Product price */}
-              <span className="text-muted">{ "$" + product.price }</span>
+              <span className="text-muted">{ getCurrenyINRformat(product.pricePerUnit) }</span>
             </div>
           </div>
           {/* Product actions */}

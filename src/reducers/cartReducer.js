@@ -11,7 +11,7 @@ try {
 }
 
 export const cartReducer = (state=[...initialState], action) => {
-  console.log("cartStore: ", state, action);
+  // console.log("cartStore: ", state, action);
   switch(action.type) {
     case ADD: {
       let tempState = [...state];
